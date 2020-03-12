@@ -1,0 +1,25 @@
+{
+  "name": "kwtdesign/craft-contact-form-extended",
+  "description": "Extending craftcms/contact-form plugin.",
+  "version": "1.0.0",
+  "type": "craft-plugin",
+  "require": {
+    "craftcms/cms": "^3.0.0-RC11",
+    "craftcms/contact-form": "^2.2.6",
+    "wixel/gump": "^1.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "craftcontactformextended\\": "src/"
+    }
+  },
+  "support": {
+    "email": "info@kwtdesign.co.uk"
+  },
+  "extra": {
+    "handle": "craft-contact-form-extended",
+    "name": "Craft Contact Form Extended",
+    "developer": "KWT Design",
+    "class": "craftcontactformextended\\CraftContactFormExtended"
+  }
+}

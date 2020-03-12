@@ -1,0 +1,16 @@
+{% import "_includes/forms" as forms %}
+
+{% if craft.app.sites.getEditableSites() | length > 1 %}
+    {% for s in craft.app.sites.getAllSites() %}
+        {{ forms.textField({
+            first:        true,
+            label:        "To Email ("~s.name~")"|t,
+            required:     true,
+            name:         'toEmail['~s.handle~']',
+            instructions: "The email address(es) that the contact form will send to. Separate multiple email addresses with commas."|t,
+            value:        settings.toEmail[s.handle] ?? '',
+            autofocus:    true,
+            errors:       settings.getErrors('toEmail'~s.handle)
+        }) }}
+    {% endfor %}
+{% endif %}
