@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "type": "craft-plugin",
   "require": {
-    "craftcms/cms": "^3.0.0-RC11",
     "craftcms/contact-form": "^2.2.6",
     "wixel/gump": "^1.9"
   },
@@ -14,12 +13,12 @@
     }
   },
   "support": {
-    "email": "info@kwtdesign.co.uk"
+    "email": "info@coded.media"
   },
   "extra": {
     "handle": "craft-contact-form-extended",
     "name": "Craft Contact Form Extended",
-    "developer": "KWT Design",
+    "developer": "Coded Media",
     "class": "craftcontactformextended\\CraftContactFormExtended"
   }
 }
