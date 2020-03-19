@@ -45,11 +45,6 @@ class CraftContactFormExtended extends Plugin
                 $event->toEmails = is_string($toEmails) ? StringHelper::split($toEmails) : $toEmails;
             }
 
-            $view = Craft::$app->getView();
-            $oldTemplatesPath = $view->getTemplatesPath();
-
-            $view->setTemplatesPath(self::getInstance()->getBasePath() . '/templates');
-
             $form = 'default';
 
             $variables = [];
@@ -85,11 +80,33 @@ class CraftContactFormExtended extends Plugin
                 $variables['message'] = $event->submission->message;
             }
 
-            $html = $view->renderTemplate('email-' . $form, $variables);
+            $view = Craft::$app->getView();
+            $front_templates_path = $view->getTemplatesPath();
+            $plugin_templates_path = self::getInstance()->getBasePath() . '/templates';
+
+            if ( file_exists($front_templates_path . '/craft-contact-form-extended/email-' . $form . '.html') )
+            {
+                $html = $view->renderTemplate('craft-contact-form-extended/email-' . $form, $variables);
+            }
+            else if ( file_exists($plugin_templates_path . 'email-' . $form . '.html') )
+            {
+                $view->setTemplatesPath($plugin_templates_path);
+
+                $html = $view->renderTemplate('email-' . $form, $variables);
+            }
+            else
+            {
+                $view->setTemplatesPath($plugin_templates_path);
+
+                $html = $view->renderTemplate('email-default', $variables);
+            }
 
             $event->message->setHtmlBody($html);
 
-            $view->setTemplatesPath($oldTemplatesPath);
+            if ( $view->getTemplatesPath() != $front_templates_path )
+            {
+                $view->setTemplatesPath($front_templates_path);
+            }
         });
     }
 
