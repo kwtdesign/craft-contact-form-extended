@@ -1,7 +1,7 @@
 {
   "name": "kwtdesign/craft-contact-form-extended",
   "description": "Extending craftcms/contact-form plugin.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "craft-plugin",
   "require": {
     "craftcms/contact-form": "^2.2.6",
